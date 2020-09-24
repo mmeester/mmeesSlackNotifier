@@ -1,0 +1,10 @@
+# Files
+.DS_Store
+*.zip
+
+# Directories
+src/Resources/app/storefront/dist
+src/Resources/public
+build
+bundle
+vendor
