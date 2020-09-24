@@ -1,0 +1,41 @@
+{
+    "name": "mmeester/mmees-slack-notifier",
+    "description": "Get notifications in your desired Slack Channel on sales or order changes",
+    "type": "shopware-platform-plugin",
+    "version": "0.0.1",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maurits Meester <maurits@e-mmer.nl>",
+            "homepage": "https://www.e-mmer.nl/",
+            "role": "Manufacturer"
+        }
+    ],
+    "require": {
+        "shopware/core": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mmeester\\SlackNotifier\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "Mmeester\\SlackNotifier\\mmeesSlackNotifier",
+        "label": {
+            "de-DE": "Slack Notifier",
+            "en-GB": "Slack Notifier"
+        },
+        "description": {
+            "de-DE": "Erhalten Sie Benachrichtigungen in Ihrem gewünschten Slack Channel über Verkaufs- oder Auftragsänderungen",
+            "en-GB": "Get notifications in your desired Slack Channel on sales or order changes"
+        },
+        "manufacturerLink": {
+            "de-DE": "",
+            "en-GB": ""
+        },
+        "supportLink": {
+            "de-DE": "",
+            "en-GB": ""
+        }
+    }
+}
