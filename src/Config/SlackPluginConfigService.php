@@ -6,7 +6,7 @@ namespace Mmeester\SlackNotifier\Config;
 
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 
-class slackPluginConfigService
+class SlackPluginConfigService
 {
     private const CONFIG_KEY = 'mmeesSlackNotifier.config';
 

@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Mmeester\SlackNotifier\Subscriber;
 
 use Mmeester\SlackNotifier\Entity\Order\OrderRepository;
-use Mmeester\SlackNotifier\Config\slackPluginConfigService;
+use Mmeester\SlackNotifier\Config\SlackPluginConfigService;
 
 use Shopware\Core\Checkout\Cart\Event\CheckoutOrderPlacedEvent;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
@@ -39,11 +39,11 @@ class orderSubscriber implements EventSubscriberInterface
      * orderSubscriber constructor.
      *
      * @param OrderRepository   $orderRepository
-     * @param slackPluginConfigService $slackPluginConfig
+     * @param SlackPluginConfigService $slackPluginConfig
      */
     public function __construct(
         OrderRepository $orderRepository,
-        slackPluginConfigService $slackPluginConfig
+        SlackPluginConfigService $slackPluginConfig
     )
     {
         $this->orderRepository = $orderRepository;
