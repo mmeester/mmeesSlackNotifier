@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Mmeester\SlackNotifier\Subscriber;
 
 use Mmeester\SlackNotifier\Entity\Order\OrderRepository;
+use Mmeester\SlackNotifier\Config\slackPluginConfigService;
 
 use Shopware\Core\Checkout\Cart\Event\CheckoutOrderPlacedEvent;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
@@ -30,21 +31,23 @@ class orderSubscriber implements EventSubscriberInterface
     private $orderRepository;
 
     /**
-     * @var ShipmentEntityRepository
+     * @var SlackPluginConfig
      */
-    private $shipmentRepository;
+    private $slackPluginConfigService;
 
     /**
      * orderSubscriber constructor.
      *
-     * @param OrderRepository          $orderRepository
-     * @param ShipmentEntityRepository $shipmentRepository
+     * @param OrderRepository   $orderRepository
+     * @param slackPluginConfigService $slackPluginConfig
      */
     public function __construct(
-        OrderRepository $orderRepository
+        OrderRepository $orderRepository,
+        slackPluginConfigService $slackPluginConfig
     )
     {
         $this->orderRepository = $orderRepository;
+        $this->slackPluginConfigService =  $slackPluginConfig;
         $this->client = new Client();
     }
 
@@ -114,7 +117,13 @@ class orderSubscriber implements EventSubscriberInterface
                     ]
                 ];
 
-                $this->client->post("https://hooks.slack.com/services/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",
+
+
+                $slackPluginConfig = $this->slackPluginConfigService->getSlackPluginConfigForSalesChannel(
+                    $event->getSalesChannelId()
+                );
+
+                $this->client->post($slackPluginConfig->getSlackEndpoint(),
                     [
                         'body' => json_encode($slackMsg),
                         'headers' => [

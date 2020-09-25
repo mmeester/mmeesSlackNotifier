@@ -5,17 +5,18 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Mmeester\SlackNotifier\Entity\Order\OrderRepository">
-            <argument type="service" id="order.repository"/>
+        <service id="Mmeester\SlackNotifier\Config\slackPluginConfigService">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
         </service>
 
-        <service id="Mmeester\SlackNotifier\Entity\Shipment\ShipmentEntityRepository">
+        <service id="Mmeester\SlackNotifier\Entity\Order\OrderRepository">
             <argument type="service" id="order.repository"/>
         </service>
 
         <service id="Mmeester\SlackNotifier\Subscriber\orderSubscriber">
             <tag name="kernel.event_subscriber"/>
             <argument type="service" id="Mmeester\SlackNotifier\Entity\Order\OrderRepository"/>
+            <argument type="service" id="Mmeester\SlackNotifier\Config\slackPluginConfigService"/>
         </service>
     </services>
 </container>
