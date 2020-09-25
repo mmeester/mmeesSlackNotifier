@@ -12,7 +12,9 @@
         }
     ],
     "require": {
-        "shopware/core": "*"
+        "shopware/core": "*",
+        "ext-json": "*",
+        "ext-intl": "*"
     },
     "autoload": {
         "psr-4": {
