@@ -33,12 +33,12 @@
             "en-GB": "Get notifications in your desired Slack Channel on sales or order changes"
         },
         "manufacturerLink": {
-            "de-DE": "",
-            "en-GB": ""
+            "de-DE": "https://wwww.e-mmer.nl/",
+            "en-GB": "https://wwww.e-mmer.nl/"
         },
         "supportLink": {
-            "de-DE": "",
-            "en-GB": ""
+            "de-DE": "https://wwww.e-mmer.nl/",
+            "en-GB": "https://wwww.e-mmer.nl/"
         }
     }
 }
