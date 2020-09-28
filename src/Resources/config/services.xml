@@ -13,10 +13,19 @@
             <argument type="service" id="order.repository"/>
         </service>
 
+        <service id="Mmeester\SlackNotifier\Helper\CurrencyHelper">
+            <argument type="service" id="order.repository"/>
+        </service>
+
+        <service id="Mmeester\SlackNotifier\Helper\LanguageHelper">
+            <argument type="service" id="order.repository"/>
+        </service>
+
         <service id="Mmeester\SlackNotifier\Subscriber\orderSubscriber">
             <tag name="kernel.event_subscriber"/>
             <argument type="service" id="Mmeester\SlackNotifier\Entity\Order\OrderRepository"/>
             <argument type="service" id="Mmeester\SlackNotifier\Config\SlackPluginConfigService"/>
+            <argument type="service" id="Mmeester\SlackNotifier\Helper\CurrencyHelper"/>
         </service>
     </services>
 </container>

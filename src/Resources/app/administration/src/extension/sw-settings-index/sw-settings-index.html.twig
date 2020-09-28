@@ -1,0 +1,11 @@
+{% block sw_settings_content_card_slot_plugins %}
+    {% parent %}
+    <sw-settings-item label="Slack Notifier"
+                      :backgroundEnabled="false"
+                      :to="'/sw/plugin/settings/mmeesSlackNotifier'"
+    >
+        <template #icon>
+            <img class="sw-settings-index__mmeesSlackNotifier-icon" :src="'mmeesslacknotifier/app-icon.png' | asset">
+        </template>
+    </sw-settings-item>
+{% endblock %}
