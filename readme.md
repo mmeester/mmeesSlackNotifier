@@ -8,6 +8,12 @@ Install the plugin using composer
 composer require mmeester/mmees-slack-notifier
 ```
 
+#### Activate plugin
+In your CLI run the following inside the root of your Shopware project:
+
+Detect new plugins: `bin/console plugin:refresh` 👉 Look for the new plugin
+Install & activate the plugin: `bin/console plugin:install --activate mmeesSlackNotifier`
+
 ### Shopware store installation
 URL will follow once the plugin is published to the Shopware store
 
