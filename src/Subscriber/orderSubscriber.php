@@ -10,14 +10,13 @@ declare(strict_types=1);
 namespace Mmeester\SlackNotifier\Subscriber;
 
 use Mmeester\SlackNotifier\Entity\Order\OrderRepository;
-use Mmeester\SlackNotifier\Config\SlackPluginConfigService;
 use Mmeester\SlackNotifier\Helper\CurrencyHelper;
+use Mmeester\SlackNotifier\Helper\SlackHelper;
 
 use Shopware\Core\Checkout\Cart\Event\CheckoutOrderPlacedEvent;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-use GuzzleHttp\Client;
 
 class orderSubscriber implements EventSubscriberInterface
 {
@@ -32,32 +31,31 @@ class orderSubscriber implements EventSubscriberInterface
     private $orderRepository;
 
     /**
-     * @var SlackPluginConfig
-     */
-    private $slackPluginConfigService;
-
-    /**
      * @var CurrencyHelper
      */
     private $currency;
 
     /**
+     * @var Slack
+     */
+    private $slack;
+
+    /**
      * orderSubscriber constructor.
      *
-     * @param OrderRepository          $orderRepository
-     * @param SlackPluginConfigService $slackPluginConfig
-     * @param CurrencyHelper           $currency
+     * @param OrderRepository $orderRepository
+     * @param CurrencyHelper  $currency
+     * @param SlackHelper           $slack
      */
     public function __construct(
         OrderRepository $orderRepository,
-        SlackPluginConfigService $slackPluginConfig,
-        CurrencyHelper $currency
+        CurrencyHelper $currency,
+        SlackHelper $slack
     )
     {
         $this->orderRepository = $orderRepository;
-        $this->slackPluginConfigService =  $slackPluginConfig;
         $this->currency = $currency;
-        $this->client = new Client();
+        $this->slack = $slack;
     }
 
 
@@ -143,22 +141,12 @@ class orderSubscriber implements EventSubscriberInterface
                     ]
                 ];
 
+                $this->slack->sendMessage($slackMsg, $event->getSalesChannelId());
 
-
-                $slackPluginConfig = $this->slackPluginConfigService->getSlackPluginConfigForSalesChannel(
-                    $event->getSalesChannelId()
-                );
-
-                $this->client->post($slackPluginConfig->getSlackEndpoint(),
-                    [
-                        'body' => json_encode($slackMsg),
-                        'headers' => [
-                            'Content-Type' => 'application/json',
-                        ]
-                    ]
-                );
             }
         }
     }
+
+
 
 }
