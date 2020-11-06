@@ -40,7 +40,7 @@ To use the plugin we need a Slack webhook to post an event:
 
 Currently We're looking for ideas / inspiration on watchable events.Please create an [issues](https://github.com/mmeester/mmeesSlackNotifier/issues) if you also have some thoughts on this! Here are some first thoughts:
 
-- [ ] State changes on order
+- [x] State changes on order
 - [ ] New customer registration
 - [ ] Failed admin login attempt
 - [ ] New review
