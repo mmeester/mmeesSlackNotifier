@@ -22,7 +22,7 @@ class SlackPluginConfigService
 
     public function getSlackPluginConfigForSalesChannel(?string $salesChannelId = null): SlackPluginConfig
     {
-        $rawConfig = $this->systemConfigService->get(self::CONFIG_KEY, $salesChannelId);
+        $rawConfig = $this->systemConfigService->get(self::CONFIG_KEY, null);
 
         return new SlackPluginConfig($rawConfig ?? []);
     }
