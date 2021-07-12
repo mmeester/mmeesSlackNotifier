@@ -2,7 +2,7 @@
     "name": "mmeester/mmees-slack-notifier",
     "description": "Get notifications in your desired Slack Channel on sales or order changes",
     "type": "shopware-platform-plugin",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "license": "MIT",
     "authors": [
         {
