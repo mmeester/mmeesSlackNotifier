@@ -8,10 +8,14 @@
 
 namespace Mmeester\SlackNotifier\Helper;
 
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
-use Shopware\Core\System\Currency\CurrencyFormatter;
-
-class CurrencyHelper extends CurrencyFormatter
+class CurrencyHelper
 {
+    public function formatForSlack($price, $currency = 'EUR') {
+        $locale = 'NL_nl';
+        $formatter =  new \NumberFormatter($locale, \NumberFormatter::CURRENCY);
+
+        return $formatter->formatCurrency($price, $currency);
+    }
+
 
 }

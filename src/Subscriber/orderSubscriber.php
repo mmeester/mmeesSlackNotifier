@@ -116,7 +116,7 @@ class orderSubscriber implements EventSubscriberInterface
                             "fields" => [
                                 [
                                     "type" => "mrkdwn",
-                                    "text" => "*Total:*\n" . $this->currency->formatCurrency($order->getAmountTotal(), 'NL_nl', 'EUR')
+                                    "text" => "*Total:*\n" . $this->currency->formatForSlack($order->getAmountTotal(), 'EUR')
                                 ],
                                 [
                                     "type" => "mrkdwn",
