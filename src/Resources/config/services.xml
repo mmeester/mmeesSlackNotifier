@@ -22,6 +22,10 @@
             <argument type="service" id="order.repository"/>
         </service>
 
+        <service id="Mmeester\SlackNotifier\Helper\SettingsHelper">
+            <argument type="service" id="Mmeester\SlackNotifier\Config\SlackPluginConfigService"/>
+        </service>
+
         <service id="Mmeester\SlackNotifier\Helper\LanguageHelper">
             <argument type="service" id="order.repository"/>
         </service>
@@ -31,6 +35,20 @@
             <argument type="service" id="Mmeester\SlackNotifier\Entity\Order\OrderRepository"/>
             <argument type="service" id="Mmeester\SlackNotifier\Helper\CurrencyHelper"/>
             <argument type="service" id="Mmeester\SlackNotifier\Helper\SlackHelper"/>
+            <argument type="service" id="Mmeester\SlackNotifier\Helper\SettingsHelper"/>
+        </service>
+
+        <!-- Order events -->
+        <service id="Mmeester\SlackNotifier\Listener\OrderStateChangeEventListener">
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="order_transaction.repository"/>
+            <argument type="service" id="order_delivery.repository"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="Mmeester\SlackNotifier\Helper\SlackHelper"/>
+            <argument type="service" id="Mmeester\SlackNotifier\Helper\SettingsHelper"/>
+            <tag name="kernel.event_listener" event="state_machine.order.state_changed" method="onOrderStateChange"/>
+            <tag name="kernel.event_listener" event="state_machine.order_delivery.state_changed" method="onOrderDeliveryStateChange"/>
+            <tag name="kernel.event_listener" event="state_machine.order_transaction.state_changed" method="onOrderTransactionStateChange"/>
         </service>
     </services>
 </container>
